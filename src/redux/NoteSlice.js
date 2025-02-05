@@ -1,15 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    notes:[]
+    notes:[],
+    user:null
 }
 
-const NoteSlice=createSlice({
+export const NoteSlice=createSlice({
     name:'noteSlice',
     initialState,
     reducers:{
-
+            setUser:(state, action)=>{
+                state.user=action.payload
+            }
     }
 })
 
-export default NoteSlice
+export const {setUser, }=NoteSlice.actions
+
+export default NoteSlice.reducer

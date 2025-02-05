@@ -6,4 +6,7 @@ export default defineConfig({
   plugins: [react(),
     tailwindcss(),
   ],
+  optimizeDeps: {
+    include: ['firebase/app', 'firebase/auth', 'firebase/firestore']  // Add other Firebase services you are using
+  }
 })

@@ -1,11 +1,13 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function Navbar() {
+  
   return (
     <nav className="flex items-center justify-center gap-40 bg-blue-200 text-black-900 shadow-md py-6">
-      <h1 className="text-3xl text-blue-900  cursor-pointer hover:text-gray-500">NoteKeeper</h1>
+      <Link className="text-3xl text-blue-900  cursor-pointer hover:text-gray-500">NoteKeeper</Link>
       <div className="flex gap-8">
         <div className="flex items-center">
           <input    
@@ -23,7 +25,7 @@ function Navbar() {
           <p className="text-xl">NewNote</p>
         </div>
       </div>
-      <p className="text-xl cursor-pointer hover:text-gray-500">Login/Signup</p>
+      <Link to="/login" className="text-xl cursor-pointer hover:text-gray-500">Login/Signup</Link>
     </nav>
   );
 }
