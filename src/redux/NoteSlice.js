@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
     notes:[],
-    user:null
+    user:""
 }
 
 export const NoteSlice=createSlice({

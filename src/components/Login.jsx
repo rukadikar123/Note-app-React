@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import app from "../firebase";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/NoteSlice";
 
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+ 
+  const dispatch=useDispatch()
 
   const navigate = useNavigate();
 
@@ -22,11 +27,14 @@ function Login() {
     const auth = getAuth(app);
     signInWithEmailAndPassword(auth, formData.email, formData.password)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.user.email);
+        dispatch(setUser(`${res.user.email}_${Math.floor(Math.random() * 100)}`))
       })
       .catch((error) => {
         console.log(error);
       });
+
+      navigate("/")
   };
 
   return (
