@@ -28,13 +28,14 @@ function Login() {
     signInWithEmailAndPassword(auth, formData.email, formData.password)
       .then((res) => {
         console.log(res.user.email);
-        dispatch(setUser(`${res.user.email}_${Math.floor(Math.random() * 100)}`))
+        dispatch(setUser(res.user.email))
       })
       .catch((error) => {
         console.log(error);
       });
 
       navigate("/")
+      setFormData({})
   };
 
   return (

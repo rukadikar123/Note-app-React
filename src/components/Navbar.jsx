@@ -2,16 +2,26 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setUser } from "../redux/NoteSlice";
 
 function Navbar() {
   const user = useSelector((state) => state.noteSlice.user);
   console.log(user);
 
+const handleChange=()=>{
+  if(!user){
+    alert("Please login to create Note")
+    return;
+  }
+  navigate("/create-note" ) 
+}
+
+  const navigate=useNavigate()
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(setUser(""));
+    navigate("/")
   };
 
   return (
@@ -31,7 +41,7 @@ function Navbar() {
             className="rounded-lg rounded-l-none border-1 p-2 border-gray-400 cursor-pointer"
           />
         </div>
-        <div className="flex  items-center hover:text-gray-500 cursor-pointer">
+        <div onClick={handleChange} className="flex  items-center hover:text-gray-500 cursor-pointer">
           <FaPlus size={27} />
           <p className="text-xl">NewNote</p>
         </div>
