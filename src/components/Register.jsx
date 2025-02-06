@@ -21,8 +21,8 @@ function Register() {
         
       })
       .catch((err)=>{
-        console.log(err);     // Handle Login  errors
-        
+        console.log("error is :", err)     // Handle Login  errors
+        alert("invalid credentials")  
       })
       navigate("/login")
     
@@ -30,7 +30,7 @@ function Register() {
   return (
     <>
         <div className="h-full flex  items-center justify-center mt-8 w-full">
-        <div className="border-2 rounded-md border-red-300 h-full py-2 w-full mx-6 md:mx-0 md:w-[25vw] flex flex-col bg-slate-700 text-white items-start gap-6 justify-start px-6 ">
+        <div className="border-2 rounded-md border-red-300 h-full py-2 w-full mx-6 md:mx-0 md:w-[25vw] flex flex-col bg-slate-200 text-black items-start gap-6 justify-start px-6 ">
           <h1 className="font-bold  text-[25px] mt-2">Sign Up</h1>
           <div>
             <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col">

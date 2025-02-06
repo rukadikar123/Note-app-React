@@ -22,6 +22,7 @@ const handleChange=()=>{
   const handleLogout = () => {
     dispatch(setUser(""));
     navigate("/")
+    alert("loged out successfully")
   };
 
   return (
