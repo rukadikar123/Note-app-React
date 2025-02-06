@@ -5,7 +5,8 @@ import { addNote } from "../redux/NoteSlice";
 function CreateNote() {
 const [noteData, setNoteData]=useState({
     title:"",
-    description:""
+    description:"",
+    category:""
 })
 
 const user = useSelector((state) => state.noteSlice.user);
@@ -14,12 +15,12 @@ const user = useSelector((state) => state.noteSlice.user);
 const dispatch=useDispatch()
 
 const handleAddNote=()=>{
-    if(!noteData.title.trim() || !noteData.description.trim()){
+    if(!noteData.title.trim() || !noteData.description.trim() || !noteData.category.trim()){
       alert("Note can' be emplty")
       return;
     }
-    dispatch(addNote(noteData))
-    setNoteData({title:"",description:""})
+    dispatch(addNote({...noteData, id:Date.now()}))
+    setNoteData({title:"",description:"", category:""})
     
 }
 
@@ -51,6 +52,11 @@ const handleAddNote=()=>{
           value={noteData.description}
           onChange={(e)=>setNoteData({...noteData ,description:e.target.value })}
         ></textarea>
+      </div>
+      <div>
+        <input type="text" placeholder="Category" 
+        value={noteData.category}
+        onChange={(e)=>setNoteData({...noteData , category:e.target.value })} />
       </div>
     </div> : <p className="mt-72 ml-72 text-xl">Login or sign up to create your Note </p>
         

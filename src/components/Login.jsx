@@ -29,6 +29,7 @@ function Login() {
       .then((res) => {
         console.log(res.user.email);
         dispatch(setUser(res.user.email))
+        alert("logged in successfully")
       })
       .catch((error) => {
         console.log("error is :", error)     // Handle Login  errors
@@ -36,7 +37,7 @@ function Login() {
         });
 
       navigate("/")
-      alert("logged in successfully")
+      
       setFormData({})
   };
 

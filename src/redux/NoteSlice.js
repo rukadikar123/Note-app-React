@@ -20,7 +20,7 @@ export const NoteSlice = createSlice({
         (data) =>
           data.title.trim().toLowerCase() ===
             newData.title.trim().toLowerCase() &&
-          data.description.trim().toLowerCase() === newData.description.trim().toLowerCase()
+          data.description.trim().toLowerCase() === newData.description.trim().toLowerCase() 
       );
       if (isPresent) {
         alert("Note is already present");
@@ -30,9 +30,17 @@ export const NoteSlice = createSlice({
       localStorage.setItem(state.user, JSON.stringify(state.notes));
       toast.success("Note added successfully")
     },
+    updateNote:(state, action)=>{
+      const updatedNote=action.payload
+      state.notes=state.notes.map((note)=>{
+       return note.id === updatedNote.id ? updatedNote : note
+    })
+      localStorage.setItem(state.user, JSON.stringify(state.notes))
+      toast.success("Note added successfully")
+    }
   },
 });
 
-export const { setUser, addNote } = NoteSlice.actions;
+export const { setUser, addNote, updateNote } = NoteSlice.actions;
 
 export default NoteSlice.reducer;

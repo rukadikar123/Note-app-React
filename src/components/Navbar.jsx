@@ -7,7 +7,7 @@ import { setUser } from "../redux/NoteSlice";
 
 function Navbar() {
   const user = useSelector((state) => state.noteSlice.user);
-  console.log(user);
+  // console.log(user);
 
 const handleChange=()=>{
   if(!user){

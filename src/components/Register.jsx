@@ -22,7 +22,7 @@ function Register() {
       })
       .catch((err)=>{
         console.log("error is :", err)     // Handle Login  errors
-        alert("invalid credentials")  
+           
       })
       navigate("/login")
     

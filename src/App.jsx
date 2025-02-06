@@ -4,8 +4,11 @@ import Notes from "./components/Notes";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import CreateNote from "./components/CreateNote";
+import NoteInfo from "./components/NoteInfo";
 
 function App() {
+
+  
   return (
     <>
       <BrowserRouter>
@@ -15,6 +18,7 @@ function App() {
               <Route path="/login" element={<Login/>} />
               <Route path="/register" element={<Register/>} />
               <Route path="/create-note" element={<CreateNote/>} />
+              <Route path="/notes/:id" element={<NoteInfo/>} />
             </Route>
               
         </Routes>
