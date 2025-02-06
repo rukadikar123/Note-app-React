@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { deleteNote } from "../redux/NoteSlice";
 
 function Notes() {
   const user = useSelector((state) => state.noteSlice.user);
@@ -9,11 +10,18 @@ function Notes() {
   console.log(notes);
 
   const navigate = useNavigate();
+  const dispatch=useDispatch()
+
+  const handleDelete=(note)=>{
+    
+    dispatch(deleteNote(note))    
+  }
+
 
   return (
     <div className="h-[87vh] w-[80%] ">
       {user ? (
-        <div className="grid  grid-cols-3 bg-emerald-50 p-10 w-full gap-8 overflow-y-auto scrollbar-hide ">
+        <div className="grid h-full grid-cols-3 bg-emerald-50 p-10 w-full gap-8 overflow-y-auto scrollbar-hide ">
           {notes?.map((note) => (
             <Link
               to={`/notes/${note?.id}`}
@@ -28,12 +36,19 @@ function Notes() {
               </p>
               <div className="flex items-center gap-6">
                 <button
-                  onClick={() => navigate(`/notes/${note?.id}`)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/notes/${note?.id}`)
+                  } }
                   className="py-2 px-6 bg-blue-400 text-white rounded-md hover:bg-blue-300 cursor-pointer"
                 >
                   Edit
                 </button>
-                <button className="py-2 px-6 bg-red-400 text-white rounded-md hover:bg-red-300 cursor-pointer">
+                <button onClick={(e)=>{
+                  e.preventDefault()
+                  e.stopPropagation()
+                  handleDelete(note)
+                }} className="py-2 px-6 bg-red-400 text-white rounded-md hover:bg-red-300 cursor-pointer">
                   Delete
                 </button>
               </div>

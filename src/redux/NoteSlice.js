@@ -37,10 +37,18 @@ export const NoteSlice = createSlice({
     })
       localStorage.setItem(state.user, JSON.stringify(state.notes))
       toast.success("Note added successfully")
+    },
+    deleteNote:(state, action)=>{
+      const updatedNotes = state.notes.filter((item) => item.id !== action.payload.id);
+      state.notes = updatedNotes;
+      if (state.user) {
+        localStorage.setItem(state.user, JSON.stringify(updatedNotes));
+      }
+      toast.success("Note deleted successfully")
     }
   },
 });
 
-export const { setUser, addNote, updateNote } = NoteSlice.actions;
+export const { setUser, addNote, updateNote, deleteNote } = NoteSlice.actions;
 
 export default NoteSlice.reducer;

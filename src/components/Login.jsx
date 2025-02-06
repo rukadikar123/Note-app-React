@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import app from "../firebase";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../redux/NoteSlice";
 
 function Login() {
@@ -11,7 +11,7 @@ function Login() {
     password: "",
   });
 
- 
+  const user = useSelector((state) => state.noteSlice.user);
   const dispatch=useDispatch()
 
   const navigate = useNavigate();
@@ -43,7 +43,8 @@ function Login() {
 
   return (
     <>
-      <div className="h-full flex  items-center justify-center mt-24 w-full">
+      {
+        !user && <div className="h-full flex  items-center justify-center mt-24 w-full">
         <div className="border-2 rounded-md border-red-300 h-full md:mx-0 mx-6 py-6 w-full md:w-[25vw] flex flex-col bg-slate-200 text-black items-start gap-6 justify-start px-6 ">
           <h1 className="font-bold  text-[25px] mt-2">Log In</h1>
           <div>
@@ -80,7 +81,8 @@ function Login() {
             </form>
           </div>
         </div>
-      </div>
+      </div> 
+      }
     </>
   );
 }

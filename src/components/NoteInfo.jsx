@@ -68,8 +68,7 @@ function NoteInfo() {
           />
           <button
             onClick={() => setIseditable(true)}
-            className={`bg-emerald-400 ${
-              isEditable ? "hidden" : "block"
+            className={`bg-emerald-400 
             } px-4 py-3 text-lg rounded-lg text-white hover:bg-emerald-500 cursor-pointer`}
           >
             Edit
