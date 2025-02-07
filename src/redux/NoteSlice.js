@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 const initialState = {
   user: "",
   notes: [],
+  deletedNotes: []
 };
 
 export const NoteSlice = createSlice({
@@ -13,6 +14,7 @@ export const NoteSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
       state.notes = JSON.parse(localStorage.getItem(action.payload)) || [];
+      state.deletedNotes=JSON.parse(localStorage.getItem(`deletedNotes${action.payload}`)) || []
     },
     addNote: (state, action) => {
       const newData = action.payload;
@@ -28,7 +30,7 @@ export const NoteSlice = createSlice({
       }
       state.notes.push(newData);
       localStorage.setItem(state.user, JSON.stringify(state.notes));
-      toast.success("Note added successfully")
+
     },
     updateNote:(state, action)=>{
       const updatedNote=action.payload
@@ -39,7 +41,12 @@ export const NoteSlice = createSlice({
       toast.success("Note added successfully")
     },
     deleteNote:(state, action)=>{
-      const updatedNotes = state.notes.filter((item) => item.id !== action.payload.id);
+      const deletedNote=action.payload
+      state.deletedNotes = [...state.deletedNotes, deletedNote];
+      if(state.user){
+        localStorage.setItem(`deletedNotes${state.user}`,JSON.stringify(state.deletedNotes))
+      }
+      const updatedNotes = state.notes.filter((item) => item.id !== deletedNote.id);
       state.notes = updatedNotes;
       if (state.user) {
         localStorage.setItem(state.user, JSON.stringify(updatedNotes));
@@ -70,10 +77,33 @@ export const NoteSlice = createSlice({
       }
       
      
+    },
+    deletePermanently:(state, action)=>{
+      const deletedNote=action.payload
+      
+      const updatedNotes = state.deletedNotes.filter((item) => item.id !== deletedNote.id);
+      state.deletedNotes = updatedNotes;
+      if(state.user){
+        localStorage.setItem(`deletedNotes${state.user}`,JSON.stringify(state.deletedNotes))
+      }
+      
+      toast.success("Note deleted permanently")
+    },
+    restoreNote:(state, action)=>{
+      const note=action.payload
+      state.notes.push(note)
+      if(state.user){
+        localStorage.setItem(state.user, JSON.stringify(state.notes))
+      }
+      state.deletedNotes=state.deletedNotes.filter((item)=> item.id !== note.id)
+      if(state.user){
+        localStorage.setItem(`deletedNotes${state.user}`, JSON.stringify(state.deletedNotes))
+      }
+
     }
   },
 });
 
-export const { setUser, addNote, updateNote, deleteNote, addToPinned } = NoteSlice.actions;
+export const { setUser, addNote, updateNote, deleteNote, addToPinned, deletePermanently, restoreNote } = NoteSlice.actions;
 
 export default NoteSlice.reducer;

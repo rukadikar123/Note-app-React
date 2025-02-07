@@ -7,8 +7,8 @@ function Sidebar() {
         <ul className='flex flex-col gap-6'>
             <Link to="/" className='text-xl border-b-1 p-2 border-gray-300 hover:bg-emerald-300'>Home</Link>
             <Link to="/pinned-notes" className='text-xl border-b-1 p-2 border-gray-300 hover:bg-emerald-300'>Pinned Notes</Link>
-            <Link className='text-xl border-b-1 p-2 border-gray-300 hover:bg-emerald-300'>Categories/Tags</Link>
-            <Link className='text-xl border-b-1 p-2 border-gray-300 hover:bg-emerald-300'>Trash</Link>
+            <Link  className='text-xl border-b-1 p-2 border-gray-300 hover:bg-emerald-300'>Categories/Tags</Link>
+            <Link to="/trashed-notes" className='text-xl border-b-1 p-2 border-gray-300 hover:bg-emerald-300'>Trash</Link>
         </ul>
     </div>
   )

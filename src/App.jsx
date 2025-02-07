@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import CreateNote from "./components/CreateNote";
 import NoteInfo from "./components/NoteInfo";
 import PinnedNotes from "./components/PinnedNotes";
+import Trash from "./components/Trash";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
               <Route path="/create-note" element={<CreateNote/>} />
               <Route path="/notes/:id" element={<NoteInfo/>} />
               <Route path="/pinned-notes" element={<PinnedNotes/>} />
+              <Route path="/trashed-notes" element={<Trash/>} />
             </Route>
               
         </Routes>

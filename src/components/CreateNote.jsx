@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNote } from "../redux/NoteSlice";
+import toast from "react-hot-toast";
 
 function CreateNote() {
 const [noteData, setNoteData]=useState({
@@ -21,7 +22,7 @@ const handleAddNote=()=>{
     }
     dispatch(addNote({...noteData, id:Date.now()}))
     setNoteData({title:"",description:"", category:"", isPinned:false})
-    
+    toast.success("Note added successfully")
 }
 
   return (
