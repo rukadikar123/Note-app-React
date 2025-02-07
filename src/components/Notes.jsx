@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteNote } from "../redux/NoteSlice";
+import { addToPinned, deleteNote } from "../redux/NoteSlice";
+import { TbPinned } from "react-icons/tb";
+import { RiUnpinFill } from "react-icons/ri";
 
 function Notes() {
   const user = useSelector((state) => state.noteSlice.user);
@@ -10,13 +12,15 @@ function Notes() {
   console.log(notes);
 
   const navigate = useNavigate();
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
-  const handleDelete=(note)=>{
-    
-    dispatch(deleteNote(note))    
-  }
+  const handleDelete = (note) => {
+    dispatch(deleteNote(note));
+  };
 
+  const handleClick = (note) => {
+    dispatch(addToPinned(note));
+  };
 
   return (
     <div className="h-[87vh] w-[80%] ">
@@ -37,19 +41,38 @@ function Notes() {
               <div className="flex items-center gap-6">
                 <button
                   onClick={(e) => {
+                    e.preventDefault();
                     e.stopPropagation();
-                    navigate(`/notes/${note?.id}`)
-                  } }
+                    navigate(`/notes/${note?.id}`);
+                  }}
                   className="py-2 px-6 bg-blue-400 text-white rounded-md hover:bg-blue-300 cursor-pointer"
                 >
                   Edit
                 </button>
-                <button onClick={(e)=>{
-                  e.preventDefault()
-                  e.stopPropagation()
-                  handleDelete(note)
-                }} className="py-2 px-6 bg-red-400 text-white rounded-md hover:bg-red-300 cursor-pointer">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleDelete(note);
+                  }}
+                  className="py-2 px-6 bg-red-400 text-white rounded-md hover:bg-red-300 cursor-pointer"
+                >
                   Delete
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleClick(note);
+                  }}
+                  className={` p-2 ${
+                    note.isPinned
+                      ? "bg-yellow-400 hover:bg-yellow-600"
+                      : "bg-gray-400 hover:bg-gray-300"
+                  }  transition-all duration-300 ease-in-out rounded-full text-white hover:bg-gray-500 cursor-pointer`}
+                >
+                  {note.isPinned ? <RiUnpinFill size={30}/> : <TbPinned size={30} /> }
+                   
                 </button>
               </div>
             </Link>

@@ -19,6 +19,7 @@ function NoteInfo() {
     title: "",
     description: "",
     category: "",
+    isPinned:false
   });
   useEffect(() => {
     if (findNote) {
@@ -27,6 +28,7 @@ function NoteInfo() {
         title: findNote.title || "",
         description: findNote.description || "",
         category: findNote.category || "",
+        isPinned:findNote.isPinned || ""
       });
     }
   }, [findNote]);

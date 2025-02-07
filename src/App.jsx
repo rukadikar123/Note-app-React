@@ -8,7 +8,7 @@ import NoteInfo from "./components/NoteInfo";
 
 function App() {
 
-  
+  localStorage.removeItem();
   return (
     <>
       <BrowserRouter>

@@ -6,11 +6,11 @@ function CreateNote() {
 const [noteData, setNoteData]=useState({
     title:"",
     description:"",
-    category:""
+    category:"",
+    isPinned:false
 })
 
 const user = useSelector((state) => state.noteSlice.user);
-
 
 const dispatch=useDispatch()
 
@@ -20,7 +20,7 @@ const handleAddNote=()=>{
       return;
     }
     dispatch(addNote({...noteData, id:Date.now()}))
-    setNoteData({title:"",description:"", category:""})
+    setNoteData({title:"",description:"", category:"", isPinned:false})
     
 }
 
