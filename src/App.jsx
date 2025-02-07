@@ -5,10 +5,11 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import CreateNote from "./components/CreateNote";
 import NoteInfo from "./components/NoteInfo";
+import PinnedNotes from "./components/PinnedNotes";
 
 function App() {
 
-  localStorage.removeItem();
+  
   return (
     <>
       <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
               <Route path="/register" element={<Register/>} />
               <Route path="/create-note" element={<CreateNote/>} />
               <Route path="/notes/:id" element={<NoteInfo/>} />
+              <Route path="/pinned-notes" element={<PinnedNotes/>} />
             </Route>
               
         </Routes>
