@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { setUser } from "../redux/NoteSlice";
+import { setSearchTerm, setUser } from "../redux/NoteSlice";
 
 function Navbar() {
+  const [searchNote,setSearchNote]=useState("")
+
   const user = useSelector((state) => state.noteSlice.user);
-  // console.log(user);
+
+  const navigate=useNavigate()
+  const dispatch = useDispatch();
+
+  const handleSearch=()=>{
+    if(searchNote){
+      dispatch(setSearchTerm(searchNote))
+      setSearchNote("")
+      navigate("/searched-notes")
+    }
+  }
 
 const handleChange=()=>{
   if(!user){
@@ -17,8 +29,7 @@ const handleChange=()=>{
   navigate("/create-note" ) 
 }
 
-  const navigate=useNavigate()
-  const dispatch = useDispatch();
+
   const handleLogout = () => {
     dispatch(setUser(""));
     navigate("/")
@@ -36,8 +47,12 @@ const handleChange=()=>{
             className="w-[35vw] outline-none p-1 rounded-lg rounded-r-none border-1 border-gray-400"
             type="text"
             placeholder="Search Note here"
+            value={searchNote}
+            onChange={(e)=>setSearchNote(e.target.value)}
+            onKeyDown={(e)=>e.key=== "Enter" && handleSearch()}
           />
           <FaSearch
+          onClick={handleSearch}
             size={33}
             className="rounded-lg rounded-l-none border-1 p-2 border-gray-400 cursor-pointer"
           />
