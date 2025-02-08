@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { updateNote } from "../redux/NoteSlice";
+import toast from "react-hot-toast";
 
 function NoteInfo() {
   const { id } = useParams();
@@ -9,6 +10,8 @@ function NoteInfo() {
 
    const categories = useSelector((state) => state.noteSlice.categories);
   const notes = useSelector((state) => state.noteSlice?.notes);
+  const colors=useSelector(state => state.noteSlice.colors)
+
   const findNote = useMemo(() => {
     return notes?.find((note) => note?.id === parseInt(id)) || {};
   }, [notes, id]);
@@ -20,7 +23,8 @@ function NoteInfo() {
     title: "",
     description: "",
     category: "",
-    isPinned:false
+    isPinned:false,
+    color:""
   });
   useEffect(() => {
     if (findNote) {
@@ -52,6 +56,14 @@ function NoteInfo() {
     dispatch(updateNote(editeNote));
     setIseditable(false);
   };
+
+  const handleSetColor=(col)=>{
+    if(isEditable){
+      setEditedNote({...editeNote,color:col})
+    toast.success("color set to your note")
+    }
+    
+  }
 
   return (
     <>
@@ -85,7 +97,7 @@ function NoteInfo() {
           </button>
         </div>
         <h1 className="text-xl font-semibold">Description</h1>
-        <div>
+        <div className="flex gap-10 ">
           <textarea
             className="border-1  rounded-md p-4 overflow-y-auto scrollbar-hide"
             name="description"
@@ -97,6 +109,14 @@ function NoteInfo() {
             value={editeNote.description}
             onChange={handleChange}
           ></textarea>
+           <div className=" flex flex-col items-center pt-4 gap-2">
+              <p>Choose a color to Your Note</p>
+              {
+                colors.map((col)=>(
+                    <p onClick={()=>handleSetColor(col)} className={`p-4 w-fit border rounded-full ${col}`} key={col}></p>
+                ))
+              }
+            </div>
         </div>
         <div>
             {categories.map((cat)=>(

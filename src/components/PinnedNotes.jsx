@@ -32,7 +32,7 @@ function PinnedNotes() {
             {pinnedNotes?.map((note) => (
               <Link
                 to={`/notes/${note?.id}`}
-                className="flex flex-col gap-6 shadow-md p-4 w-full h-[250px] cursor-pointer transform transition-transform duration-200  hover:scale-105 "
+                className={`flex flex-col gap-6 ${note.color} shadow-md p-4 rounded-lg w-full h-[250px] cursor-pointer transform transition-transform duration-200  hover:scale-105 `}
                 key={note?.id}
               >
                 <h1 className="text-2xl font-semibold border-b-1 p-1 border-gray-500 line-clamp-1">

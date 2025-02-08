@@ -11,10 +11,11 @@ function CreateNote() {
     description: "",
     category: "",
     isPinned: false,
+    color:"",
   });
 
 
-
+  const colors=useSelector(state => state.noteSlice.colors)
   const user = useSelector((state) => state.noteSlice.user);
 
   const dispatch = useDispatch();
@@ -22,7 +23,8 @@ function CreateNote() {
   const handleAddNote = () => {
     if (
       !noteData.title.trim() ||
-      !noteData.description.trim()
+      !noteData.description.trim() || 
+      !noteData.category
     ) {
       alert("Note can' be emplty");
       return;
@@ -31,6 +33,11 @@ function CreateNote() {
     setNoteData({ title: "", description: "", category: "", isPinned: false });
     toast.success("Note added successfully");
   };
+
+const handleSetColor=(col)=>{
+  setNoteData({...noteData,color:col})
+  toast.success("color set to your note")
+}
 
   return (
     <>
@@ -54,7 +61,7 @@ function CreateNote() {
               Create
             </button>
           </div>
-          <div>
+          <div className="flex gap-10 ">
             <textarea
               className="border-1  rounded-md p-4 overflow-y-auto scrollbar-hide"
               name="description"
@@ -67,6 +74,14 @@ function CreateNote() {
                 setNoteData({ ...noteData, description: e.target.value })
               }
             ></textarea>
+            <div className=" flex flex-col items-center pt-4 gap-2">
+              <p>Choose a color to Your Note</p>
+              {
+                colors.map((col)=>(
+                    <p onClick={()=>handleSetColor(col)} className={`p-4 w-fit border rounded-full ${col}`} key={col}></p>
+                ))
+              }
+            </div>
           </div>
           <div>
             {categories.map((cat)=>(

@@ -29,7 +29,7 @@ const handleRestore=(note)=>{
             {deletedNotes.length>0 ? deletedNotes?.map((note) => (
               <div
                 to={`/notes/${note?.id}`}
-                className="flex flex-col gap-6 shadow-md p-4 w-full h-[250px] cursor-pointer   "
+                className={`flex flex-col gap-6 ${note.color} shadow-md rounded-lg p-4 w-full h-[250px] cursor-pointer   `}
                 key={note?.id}
               >
                 <h1 className="text-2xl font-semibold border-b-1 p-1 border-gray-500 line-clamp-1">

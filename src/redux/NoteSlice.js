@@ -20,6 +20,16 @@ const initialState = {
     "Entertainment",
     "Tasks",
   ],
+  colors:[
+    "bg-red-300",       // Light Red
+    "bg-blue-200",      // Light Blue
+    "bg-green-200",     // Light Green
+    "bg-yellow-200",    // Light Yellow
+    "bg-purple-200",    // Light Purple
+    "bg-pink-200",      // Light Pink
+    "bg-gray-200",      // Light Gray
+    "bg-orange-200",   // Light Indigo
+  ]
 };
 
 export const NoteSlice = createSlice({
