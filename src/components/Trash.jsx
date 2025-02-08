@@ -23,9 +23,10 @@ const handleRestore=(note)=>{
   return (
     <>
     <div className="h-[87vh] w-[80%] ">
+      
         {user ? (
           <div className="grid h-full grid-cols-3 bg-emerald-50 p-10 w-full gap-8 overflow-y-auto scrollbar-hide ">
-            {deletedNotes?.map((note) => (
+            {deletedNotes.length>0 ? deletedNotes?.map((note) => (
               <div
                 to={`/notes/${note?.id}`}
                 className="flex flex-col gap-6 shadow-md p-4 w-full h-[250px] cursor-pointer   "
@@ -61,11 +62,11 @@ const handleRestore=(note)=>{
                   
                 </div>
               </div>
-            ))}
+            )) : <p className="ml-86 w-full mt-60 text-2xl font-semibold text-red-500">Trash is empty</p>}
           </div>
         ) : (
           <p className="mt-72 ml-72 text-xl">
-            Login or sign up to create your Note{" "}
+            Login or sign up to get your deleted Note{" "}
           </p>
         )}
       </div>

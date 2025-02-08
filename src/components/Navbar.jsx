@@ -15,6 +15,11 @@ function Navbar() {
 
   const handleSearch=()=>{
     if(searchNote){
+      if(!user){
+        alert("You must log in to view your notes.")
+        setSearchNote("")
+        return;
+      }
       dispatch(setSearchTerm(searchNote))
       setSearchNote("")
       navigate("/searched-notes")

@@ -86,7 +86,7 @@ function PinnedNotes() {
           </div>
         ) : (
           <p className="mt-72 ml-72 text-xl">
-            Login or sign up to create your Note{" "}
+            Login or sign up to get your pinned Note{" "}
           </p>
         )}
       </div>

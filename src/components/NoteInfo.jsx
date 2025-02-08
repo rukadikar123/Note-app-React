@@ -7,6 +7,7 @@ function NoteInfo() {
   const { id } = useParams();
   const [isEditable, setIseditable] = useState(false);
 
+   const categories = useSelector((state) => state.noteSlice.categories);
   const notes = useSelector((state) => state.noteSlice?.notes);
   const findNote = useMemo(() => {
     return notes?.find((note) => note?.id === parseInt(id)) || {};
@@ -42,8 +43,7 @@ function NoteInfo() {
   const handleUpdate = () => {
     if (
       !editeNote.title.trim() ||
-      !editeNote.description.trim() ||
-      !editeNote.category.trim()
+      !editeNote.description.trim()
     ) {
       alert("Note can' be emplty");
       return;
@@ -99,16 +99,22 @@ function NoteInfo() {
           ></textarea>
         </div>
         <div>
-          <label className="text-xl font-semibold" htmlFor="">Category: </label>
-          <input
-            onChange={handleChange}
-            type="text"
-            name="category"
-            placeholder="Category"
-            disabled={!isEditable}
-            value={editeNote.category}
-          />
-        </div>
+            {categories.map((cat)=>(
+             <label className="p-1 border-t-1 border-b-1 " htmlFor="" key={cat}>
+               <input 
+              type="radio"
+              name="category"
+              placeholder="Category"
+              value={cat}
+              disabled={!isEditable}
+              checked={editeNote.category===cat}
+              onChange={() =>
+                setEditedNote({...editeNote, category:cat})
+              }
+            /> {cat}
+             </label>
+            ))}
+          </div>
       </div>
     </>
   );

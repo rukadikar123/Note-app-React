@@ -8,6 +8,7 @@ import NoteInfo from "./components/NoteInfo";
 import PinnedNotes from "./components/PinnedNotes";
 import Trash from "./components/Trash";
 import SearchedNote from "./components/SearchedNote";
+import Categories from "./components/Categories";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
               <Route path="/pinned-notes" element={<PinnedNotes/>} />
               <Route path="/trashed-notes" element={<Trash/>} />
               <Route path="/searched-notes" element={<SearchedNote/>} />
+              <Route path="/category" element={<Categories/>} />
             </Route>
               
         </Routes>

@@ -6,6 +6,20 @@ const initialState = {
   notes: [],
   deletedNotes: [],
   searchTerm: "",
+  categories :[
+    "Work",
+    "Personal",
+    "Health",
+    "Finance",
+    "Shopping",
+    "Travel",
+    "Fitness",
+    "Projects",
+    "Learning",
+    "Goals",
+    "Entertainment",
+    "Tasks",
+  ],
 };
 
 export const NoteSlice = createSlice({
