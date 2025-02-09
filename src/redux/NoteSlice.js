@@ -6,7 +6,7 @@ const initialState = {
   notes: [],
   deletedNotes: [],
   searchTerm: "",
-  categories :[
+  categories: [
     "Work",
     "Personal",
     "Health",
@@ -20,16 +20,16 @@ const initialState = {
     "Entertainment",
     "Tasks",
   ],
-  colors:[
-    "bg-red-300",       // Light Red
-    "bg-blue-200",      // Light Blue
-    "bg-green-200",     // Light Green
-    "bg-yellow-200",    // Light Yellow
-    "bg-purple-200",    // Light Purple
-    "bg-pink-200",      // Light Pink
-    "bg-gray-200",      // Light Gray
-    "bg-orange-200",   // Light Indigo
-  ]
+  colors: [
+    "bg-red-200", // Light Red
+    "bg-blue-200", // Light Blue
+    "bg-green-200", // Light Green
+    "bg-yellow-200", // Light Yellow
+    "bg-purple-200", // Light Purple
+    "bg-pink-200", // Light Pink
+    "bg-gray-200", // Light Gray
+    "bg-orange-200", // Light Indigo
+  ],
 };
 
 export const NoteSlice = createSlice({
@@ -144,6 +144,12 @@ export const NoteSlice = createSlice({
         );
       }
     },
+    updatedNotesFunc: (state, action) => {
+      state.notes = action.payload;
+      if (state.user) {
+        localStorage.setItem(state.notes,JSON.stringify(state.deletedNotes));
+      }
+    },
   },
 });
 
@@ -156,6 +162,7 @@ export const {
   deletePermanently,
   restoreNote,
   setSearchTerm,
+  updatedNotesFunc,
 } = NoteSlice.actions;
 
 export default NoteSlice.reducer;
