@@ -5,7 +5,7 @@ import { TbRestore } from "react-icons/tb";
 import { deletePermanently, restoreNote } from "../redux/NoteSlice";
 import toast from "react-hot-toast";
 
-function Trash() {
+function Trash({isSideBarOpen}) {
   const user = useSelector((state) => state.noteSlice.user);
   console.log(user);
 
@@ -22,17 +22,17 @@ const handleRestore=(note)=>{
 }
   return (
     <>
-    <div className="h-[87vh] w-[80%] ">
+    <div className={`h-[87vh] w-[78%] bg-emerald-50 ${isSideBarOpen ? "hidden" : "block"} `}>
       
         {user ? (
-          <div className="grid h-full grid-cols-3 bg-emerald-50 p-10 w-full gap-8 overflow-y-auto scrollbar-hide ">
+          <div className="grid h-full grid-cols-1 md:grid-cols-3  p-6 md:p-10 w-full gap-4 md:gap-8 overflow-y-auto scrollbar-hide ">
             {deletedNotes.length>0 ? deletedNotes?.map((note) => (
               <div
                 to={`/notes/${note?.id}`}
-                className={`flex flex-col gap-6 ${note.color} shadow-md rounded-lg p-4 w-full h-[250px] cursor-pointer   `}
+                className={`flex flex-col gap-2 md:gap-6 ${note.color} shadow-md rounded-lg p-2 md:p-4 w-full h-[160px] md:h-[250px] cursor-pointer   `}
                 key={note?.id}
               >
-                <h1 className="text-2xl font-semibold border-b-1 p-1 border-gray-500 line-clamp-1">
+                <h1 className="md:text-2xl text-lg font-semibold border-b-1 p-1 border-gray-500 line-clamp-1">
                   {note?.title}
                 </h1>
                 <p className="line-clamp-2 flex-grow text-gray-700 tracking-wider">
@@ -62,10 +62,10 @@ const handleRestore=(note)=>{
                   
                 </div>
               </div>
-            )) : <p className="ml-86 w-full mt-60 text-2xl font-semibold text-red-500">Trash is empty</p>}
+            )) : <p className="md:ml-86 ml-10 w-full mt-40 md:mt-60 text-2xl font-semibold text-red-500">Trash is empty</p>}
           </div>
         ) : (
-          <p className="mt-72 ml-72 text-xl">
+          <p className="md:mt-72 mt-40 ml-2 md:ml-72 text-md md:text-xl">
             Login or sign up to get your deleted Note{" "}
           </p>
         )}

@@ -1,17 +1,14 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToPinned, deleteNote, updatedNotesFunc, } from "../redux/NoteSlice";
+import { addToPinned, deleteNote, updatedNotesFunc } from "../redux/NoteSlice";
 import NoteList from "./NoteList";
 
-
-function Notes({moveNote}) {
+function Notes({ moveNote, isSideBarOpen }) {
   const user = useSelector((state) => state.noteSlice?.user);
   const notes = useSelector((state) => state.noteSlice?.notes);
-  
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const handleDelete = (note) => {
     dispatch(deleteNote(note));
@@ -21,14 +18,16 @@ function Notes({moveNote}) {
     dispatch(addToPinned(note));
   };
 
-  
-
   return (
-    <div className="h-[87vh] w-[100%]  md:w-[80%] ">
+    <div
+      className={`h-[87vh] w-[100%] bg-emerald-50  md:w-[78%] ${
+        isSideBarOpen ? "hidden" : "block"
+      } `}
+    >
       {user ? (
-        <div className="grid h-full grid-cols-3 bg-emerald-50 p-10 w-full gap-8 overflow-y-auto scrollbar-hide ">
+        <div className="grid  h-full grid-cols-1 md:grid-cols-3  md:p-10 p-6 w-full gap-4 md:gap-8 overflow-y-auto scrollbar-hide ">
           {notes?.map((note, index) => (
-              <NoteList 
+            <NoteList
               key={note?.id || `note-${index}`}
               note={note}
               index={index}
@@ -40,7 +39,7 @@ function Notes({moveNote}) {
           ))}
         </div>
       ) : (
-        <p className="mt-72 ml-72 text-xl">
+        <p className="md:mt-72 mt-40 ml-6 md:ml-72 text-md md:text-xl">
           Login or sign up to get/create your Note{" "}
         </p>
       )}
@@ -49,5 +48,3 @@ function Notes({moveNote}) {
 }
 
 export default Notes;
-
-

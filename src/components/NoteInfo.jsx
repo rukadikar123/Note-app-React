@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { updateNote } from "../redux/NoteSlice";
 import toast from "react-hot-toast";
+import { FaSave } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 
-function NoteInfo() {
+function NoteInfo({isSideBarOpen}) {
   const { id } = useParams();
   const [isEditable, setIseditable] = useState(false);
 
@@ -67,11 +69,11 @@ function NoteInfo() {
 
   return (
     <>
-      <div className="flex flex-col gap-4 px-6 py-10 w-full h-full ">
-        <div className="flex gap-10 items-center">
-          <label className="text-xl font-semibold" htmlFor="">Title</label>
+      <div className={`flex-col ${isSideBarOpen ? "hidden" : "flex"} gap-4 px-6 md:px-10 py-10 w-full md:w-[78%] h-full `}>
+        <div className="flex md:gap-10 gap-6 items-center">
+          <label className="md:text-xl text-md font-semibold" htmlFor="">Title</label>
           <input
-            className="border-1 rounded-md text-xl w-[70%] p-2"
+            className="border-1 rounded-md text-md md:text-xl md:w-[72%] w-full p-1 md:p-2"
             type="text"
             name="title"
             placeholder="Title"
@@ -83,44 +85,49 @@ function NoteInfo() {
           <button
             onClick={() => setIseditable(true)}
             className={`bg-emerald-400 
-            } px-4 py-3 text-lg rounded-lg text-white hover:bg-emerald-500 cursor-pointer`}
+            } md:block hidden px-4 py-3 text-lg rounded-lg text-white hover:bg-emerald-500 cursor-pointer`}
           >
             Edit
           </button>
+          <span  onClick={() => setIseditable(true)} className="md:hidden block" ><FaEdit size={26}/></span>
           <button
             className={`bg-emerald-400 px-4 py-3 ${
-              isEditable ? "block" : "hidden"
-            } text-lg rounded-lg text-white hover:bg-emerald-500 cursor-pointer`}
+              isEditable ? "md:block hidden" : "hidden"
+            } text-lg  rounded-lg text-white hover:bg-emerald-500 cursor-pointer`}
             onClick={handleUpdate}
           >
             update
           </button>
+          <span onClick={handleUpdate} className={` ${
+              isEditable ? "block" : "hidden"
+            }  md:hidden block`}><FaSave size={26}/></span>
         </div>
-        <h1 className="text-xl font-semibold">Description</h1>
-        <div className="flex gap-10 ">
+        <h1 className="md:text-xl text-md font-semibold">Description:</h1>
+        <div className="flex gap-3 md:gap-10 ">
           <textarea
-            className="border-1  rounded-md p-4 overflow-y-auto scrollbar-hide"
+            className="border-1  rounded-md p-2 md:p-4 overflow-y-auto scrollbar-hide"
             name="description"
             placeholder="Type Your Content here"
             required
             disabled={!isEditable}
-            rows={15}
+            rows={5}
+            data-md-rows={15}
             cols={90}
             value={editeNote.description}
             onChange={handleChange}
           ></textarea>
            <div className=" flex flex-col items-center pt-4 gap-2">
-              <p>Choose a color to Your Note</p>
+              <p className="md:text-md text-xs">Choose a color to Your Note</p>
               {
                 colors.map((col)=>(
-                    <p onClick={()=>handleSetColor(col)} className={`p-4 w-fit border rounded-full ${col}`} key={col}></p>
+                    <p onClick={()=>handleSetColor(col)} className={`p-2 md:p-4 w-fit border rounded-full ${col}`} key={col}></p>
                 ))
               }
             </div>
         </div>
-        <div>
+        <div className="flex flex-row  flex-wrap">
             {categories.map((cat)=>(
-             <label className="p-1 border-t-1 border-b-1 " htmlFor="" key={cat}>
+             <label className="p-1  border-t-1 border-b-1 " htmlFor="" key={cat}>
                <input 
               type="radio"
               name="category"

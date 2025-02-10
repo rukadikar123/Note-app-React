@@ -3,12 +3,14 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
 
-function Layout() {
+function Layout({setIsSideBarOpen, isSideBarOpen}) {
   return (
     <div className="h-screen w-full">
       <Navbar />
-      <div className="flex gap-1 w-full p-1">
-        <Sidebar />
+      <div className="flex  w-full p-1">
+        <Sidebar 
+        isSideBarOpen={isSideBarOpen}
+                  setIsSideBarOpen={setIsSideBarOpen}/>
         <Outlet />
       </div>
     </div>

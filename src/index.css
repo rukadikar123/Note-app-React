@@ -7,3 +7,9 @@
 .scrollbar-hide {
     scrollbar-width: none; 
   }
+
+  @media (min-width: 768px) {
+    textarea {
+      rows: 15 !important;
+    }
+}

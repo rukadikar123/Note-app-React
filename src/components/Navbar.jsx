@@ -44,8 +44,8 @@ function Navbar() {
 
   return (
     <nav
-      className={`flex items-center md:px-0 px-1 md:justify-evenly ${
-        user ? "gap-5" : "justify-between px-2"
+      className={`w-full flex items-center px-1 md:justify-evenly ${
+        user ? "gap-3" : "justify-between px-2"
       } md:gap-46 bg-blue-200 text-black-900 shadow-md py-4 md:py-6`}
     >
       <Link className="md:text-3xl text-sm text-blue-900  cursor-pointer hover:text-gray-500">
@@ -54,7 +54,7 @@ function Navbar() {
       <div className="flex items-center gap-1 md:gap-6">
         <div className="flex  items-center">
           <input
-            className="md:w-[35vw] w-[45vw] text-[9px] md:2xl outline-none p-1 rounded-lg rounded-r-none border-1 border-gray-400"
+            className="md:w-[35vw] w-[45vw] text-[9px] md:text-[14px]  outline-none p-1 rounded-lg rounded-r-none border-1 border-gray-400"
             type="text"
             placeholder="Search Note here"
             value={searchNote}
@@ -74,13 +74,14 @@ function Navbar() {
           <FaPlus size={27} />
           <p className="text-xl">NewNote</p>
         </div>
+        { user && <FaPlus onClick={handleChange} className="md:hidden block" size={15} />}
       </div>
       <div className="flex md:gap-3  md:min-w-[16vw] min-w-[10vw]  items-center">
         <div
           onClick={() => setIsOpen(!isOpen)}
           className={` ${
             isOpen ? "md:static absolute top-1" : ""
-          } ${user} ? "block" : "hidden"  text-sm md:text-lg cursor-pointer hover:text-gray-500 border-b-1 border-gray-400 `}
+          } ${user} ? "block" : "hidden"  text-sm md:text-lg cursor-pointer hover:text-gray-500  border-gray-400 `}
         >
           <p>{user}</p>
           <p

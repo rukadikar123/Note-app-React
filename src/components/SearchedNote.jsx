@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { addToPinned, deleteNote } from "../redux/NoteSlice";
 import NoteList from "./NoteList";
 
-function SearchedNote({moveNote}) {
+function SearchedNote({moveNote, isSideBarOpen}) {
   const searchNote = useSelector((state) => state.noteSlice.searchTerm);
   const notes = useSelector((state) => state.noteSlice.notes);
   const user = useSelector((state) => state.noteSlice.user);
@@ -30,9 +30,9 @@ function SearchedNote({moveNote}) {
 
   return (
     <>
-         <div className="h-[87vh] w-[80%] ">
+         <div className={`h-[87vh] w-[80%] ${isSideBarOpen ? "hidden" : "block"} `}>
       {user ? (
-        <div className="grid h-full grid-cols-3 bg-emerald-50 p-10 w-full gap-8 overflow-y-auto scrollbar-hide ">
+        <div className="grid md:h-full grid-cols-1 md:grid-cols-3 bg-emerald-50 p-6 md:p-10 w-full gap-4 md:gap-8 overflow-y-auto scrollbar-hide ">
           {filteredNotes?.map((note) => {
              const originalIndex = findOriginalIndex(note.id);
             return <NoteList key={note?.id}
@@ -46,7 +46,7 @@ function SearchedNote({moveNote}) {
 })}
         </div>
       ) : (
-        <p className="mt-72 ml-72 text-xl">
+        <p className="md:mt-72 mt-40 ml-6 md:ml-72 text-md md:text-xl">
           Login or sign up to get/create your Note{" "}
         </p>
       )}

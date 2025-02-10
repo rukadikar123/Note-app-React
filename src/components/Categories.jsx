@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { addToPinned, deleteNote } from "../redux/NoteSlice";
 import NoteList from "./NoteList";
 
-function Categories({ moveNote }) {
+function Categories({ moveNote , isSideBarOpen}) {
   const [selectedCat, setSelectedCat] = useState(null);
 
   const user = useSelector((state) => state.noteSlice.user);
@@ -36,10 +36,10 @@ function Categories({ moveNote }) {
 
   return (
     <>
-      <div>
+      <div >
         {user ? (
-          <div className="h-[72vh] w-[78vw] ">
-            <div className="flex mt-4 border rounded-2xl p-2 shadow-md bg-gray-100 pl-4 py-4 gap-6">
+          <div className={`h-[84vh] md:w-[100%] bg-emerald-50 ${isSideBarOpen ? "hidden" : "block p-4"}`}>
+            <div className="flex  flex-wrap w-full mt-2 md:mt-4 border rounded-md md:rounded-2xl p-2 shadow-md bg-gray-100 md:pl-4 py-2 md:py-4 gap-4 md:gap-6">
               {categories.map((cat) => (
                 <p
                   onClick={() => handleSetClick(cat)}
@@ -47,7 +47,7 @@ function Categories({ moveNote }) {
                     selectedCat === cat
                       ? "bg-blue-500 text-white font-semibold"
                       : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                  } p-2 cursor-pointer  rounded-lg`}
+                  } p-1 md:p-2 cursor-pointer  rounded-lg`}
                   key={cat}
                 >
                   {cat}
@@ -55,8 +55,8 @@ function Categories({ moveNote }) {
               ))}
             </div>
             <div >
-              {user ? (
-                <div className="grid h-[75vh]  grid-cols-3 bg-emerald-50 p-10 w-full gap-8 overflow-y-auto scrollbar-hide ">
+              {user && (
+                <div className="grid h-[70vh] grid-cols-1 md:grid-cols-3 mt-6 md:mt-0 p-6 md:p-10 gap-4 md:gap-8 overflow-y-auto scrollbar-hide ">
                   {filteredNotes?.map((note) => {
                     const originalIndex = findOriginalIndex(note.id);
                     return (
@@ -72,15 +72,11 @@ function Categories({ moveNote }) {
                     );
                   })}
                 </div>
-              ) : (
-                <p className="mt-72 ml-72 text-xl">
-                  Login or sign up to get/create your Note{" "}
-                </p>
-              )}
+              ) }
             </div>
           </div>
         ) : (
-          <p className="mt-72 ml-72 text-xl">
+          <p className="md:mt-72 mt-40 ml-6 md:ml-72 text-md md:text-xl">
             Login or sign up to get your Note{" "}
           </p>
         )}
