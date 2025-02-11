@@ -23,12 +23,12 @@ const initialState = {
   colors: [
     "bg-red-200", // Light Red
     "bg-blue-200", // Light Blue
-    "bg-green-200", // Light Green
-    "bg-yellow-200", // Light Yellow
-    "bg-purple-200", // Light Purple
-    "bg-pink-200", // Light Pink
-    "bg-gray-200", // Light Gray
-    "bg-orange-200", // Light Indigo
+    "bg-green-300", // Light Green
+    "bg-yellow-300", // Light Yellow
+    "bg-purple-300", // Light Purple
+    "bg-pink-300", // Light Pink
+    "bg-gray-300", // Light Gray
+    "bg-orange-300", // Light Indigo
   ],
 };
 
@@ -67,7 +67,7 @@ export const NoteSlice = createSlice({
         return note.id === updatedNote.id ? updatedNote : note;
       });
       localStorage.setItem(state.user, JSON.stringify(state.notes));
-      toast.success("Note added successfully");
+      toast.success("Note updated successfully");
     },
     deleteNote: (state, action) => {
       const deletedNote = action.payload;
