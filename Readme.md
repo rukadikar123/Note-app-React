@@ -27,7 +27,7 @@
 #### Drag & Drop: React DnD
 #### react-hot-toast
 
-
+(DeployedLink)[https://note-app-react-snowy.vercel.app]
 
 
 
