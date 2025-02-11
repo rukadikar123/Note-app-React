@@ -5,6 +5,9 @@
 
 #### A fully responsive note-taking app built with React, Redux, Firebase, and LocalStorage. It supports user authentication, note management, categories, pinned notes, trash, search, and drag-and-drop functionality
 
+
+
+
 ### 🚀 Features:
 
 #### ✔ User Authentication (Firebase)
@@ -18,6 +21,8 @@
 #### ✔ Toast Notifications
 #### ✔ Fully Responsive (Mobile & Tablet)
 
+
+
 ### Tech Stack:
 
 #### Frontend: React, Redux, Tailwind CSS
@@ -26,6 +31,9 @@
 #### Storage: LocalStorage, Firebase Firestore
 #### Drag & Drop: React DnD
 #### react-hot-toast
+
+
+
 
 (DeployedLink)[https://note-app-react-snowy.vercel.app]
 
