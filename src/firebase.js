@@ -5,9 +5,9 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCClArIz0qVpSoSJ2bYGagOTDg9-4CHGn8",
-  authDomain: "note-app-c5c5d.firebaseapp.com",
-  projectId: "note-app-c5c5d",
+  apiKey:process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: "note-app-c5c5d.firebasestorage.app",
   messagingSenderId: "472329485194",
   appId: "1:472329485194:web:6ccedd40a3ba24cd29e673"
