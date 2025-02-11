@@ -35,7 +35,7 @@
 
 
 
-(DeployedLink)[https://note-app-react-snowy.vercel.app]
+(DeployedLink)[https://note-app-react-hae4f8e7u-siddharth-rukadikars-projects.vercel.app]
 
 
 
