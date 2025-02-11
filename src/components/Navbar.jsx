@@ -48,7 +48,7 @@ function Navbar() {
         user ? "gap-3" : "justify-between px-2"
       } md:gap-46 bg-blue-200 text-black-900 shadow-md py-4 md:py-6`}
     >
-      <Link className="md:text-3xl text-sm text-blue-900  cursor-pointer hover:text-gray-500">
+      <Link to="/" className="md:text-3xl text-sm text-blue-900  cursor-pointer hover:text-gray-500">
         NoteKeeper
       </Link>
       <div className="flex items-center gap-1 md:gap-6">

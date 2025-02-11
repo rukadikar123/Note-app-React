@@ -22,7 +22,7 @@ const handleRestore=(note)=>{
 }
   return (
     <>
-    <div className={`h-[87vh] w-[78%] bg-emerald-50 ${isSideBarOpen ? "hidden" : "block"} `}>
+    <div className={`h-[83vh] md:h-[80vh] w-[78%] bg-emerald-50 ${isSideBarOpen ? "hidden" : "block"} `}>
       
         {user ? (
           <div className="grid h-full grid-cols-1 md:grid-cols-3  p-6 md:p-10 w-full gap-4 md:gap-8 overflow-y-auto scrollbar-hide ">

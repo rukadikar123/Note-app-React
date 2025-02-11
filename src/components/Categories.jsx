@@ -38,8 +38,8 @@ function Categories({ moveNote , isSideBarOpen}) {
     <>
       <div >
         {user ? (
-          <div className={`h-[84vh] md:w-[100%] bg-emerald-50 ${isSideBarOpen ? "hidden" : "block p-4"}`}>
-            <div className="flex  flex-wrap w-full mt-2 md:mt-4 border rounded-md md:rounded-2xl p-2 shadow-md bg-gray-100 md:pl-4 py-2 md:py-4 gap-4 md:gap-6">
+          <div className={` h-[82vh] md:h-[80vh] md:w-[100%] bg-emerald-50 ${isSideBarOpen ? "hidden" : "block p-4"}`}>
+            <div className="flex  flex-wrap w-full  border rounded-md md:rounded-2xl p-1 shadow-md bg-gray-100 md:pl-4 py-2 md:py-4 gap-2 md:gap-6">
               {categories.map((cat) => (
                 <p
                   onClick={() => handleSetClick(cat)}
@@ -56,7 +56,7 @@ function Categories({ moveNote , isSideBarOpen}) {
             </div>
             <div >
               {user && (
-                <div className="grid h-[70vh] grid-cols-1 md:grid-cols-3 mt-6 md:mt-0 p-6 md:p-10 gap-4 md:gap-8 overflow-y-auto scrollbar-hide ">
+                <div className="grid h-[49vh] md:h-[68vh] grid-cols-1 md:grid-cols-3 mt-6 md:mt-0 p-6 md:p-10 gap-4 md:gap-8 overflow-y-auto scrollbar-hide ">
                   {filteredNotes?.map((note) => {
                     const originalIndex = findOriginalIndex(note.id);
                     return (

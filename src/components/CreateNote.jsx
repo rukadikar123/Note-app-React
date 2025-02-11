@@ -43,7 +43,7 @@ function CreateNote({ isSideBarOpen }) {
         <div
           className={` flex-col gap-6 ${
             isSideBarOpen ? "hidden" : "flex"
-          } px-6 py-6  md:py-16 w-full md:w-[78%] h-full `}
+          } px-6 py-6  md:py-10 w-full md:w-[78%] h-full `}
         >
           <div className="flex gap-4 md:gap-10 items-center">
             <input

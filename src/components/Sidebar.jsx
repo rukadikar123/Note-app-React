@@ -9,7 +9,7 @@ function Sidebar({setIsSideBarOpen, isSideBarOpen}) {
     <div
       className={`md:w-[22%] ${
         isSideBarOpen ? "w-[90%]  shadow-md bg-gray-100" : "w-8"
-      }   h-[87vh] py-2 md:py-4 md:px-1`}
+      }   h-[80vh] py-2 md:py-4 md:px-1`}
     >
       <button onClick={() => setIsSideBarOpen(!isSideBarOpen)} className="block md:hidden">
         <IoMdMenu size={30} />

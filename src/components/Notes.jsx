@@ -20,7 +20,7 @@ function Notes({ moveNote, isSideBarOpen }) {
 
   return (
     <div
-      className={`h-[87vh] w-[100%] bg-emerald-50  md:w-[78%] ${
+      className={`md:h-[80vh] h-[83vh] w-[100%] bg-emerald-50  md:w-[78%] ${
         isSideBarOpen ? "hidden" : "block"
       } `}
     >

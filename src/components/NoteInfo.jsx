@@ -69,7 +69,7 @@ function NoteInfo({isSideBarOpen}) {
 
   return (
     <>
-      <div className={`flex-col ${isSideBarOpen ? "hidden" : "flex"} gap-4 px-6 md:px-10 py-10 w-full md:w-[78%] h-full `}>
+      <div className={`flex-col ${isSideBarOpen ? "hidden" : "flex"} gap-4 px-6 md:px-10 py-8 w-full md:w-[78%] h-full `}>
         <div className="flex md:gap-10 gap-6 items-center">
           <label className="md:text-xl text-md font-semibold" htmlFor="">Title</label>
           <input

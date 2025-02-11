@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../redux/NoteSlice";
 
-function Login({isSideBarOpen}) {
+function Login({ isSideBarOpen }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -27,23 +27,27 @@ function Login({isSideBarOpen}) {
     signInWithEmailAndPassword(auth, formData.email, formData.password)
       .then((res) => {
         console.log(res.user.email);
-        dispatch(setUser(res.user.email))
-        alert("logged in successfully")
+        dispatch(setUser(res.user.email));
+        alert("logged in successfully");
       })
       .catch((error) => {
-        console.log("error is :", error)     // Handle Login  errors
-        alert("invalid credentials")        
-        });
+        console.log("error is :", error); // Handle Login  errors
+        alert("invalid credentials");
+      });
 
-      navigate("/")
-      
-      setFormData({})
+    navigate("/");
+
+    setFormData({});
   };
 
   return (
     <>
-      <div className={`h-full flex ${isSideBarOpen ? "hidden" : "block"} items-center justify-center mt-20 md:mt-24 w-full`}>
-        <div className="border-2 rounded-md border-red-300 h-full md:mx-0 mx-6 py-2 md:py-6 w-full md:w-[25vw] flex flex-col bg-slate-200 text-black items-start gap-6 justify-start px-6 ">
+      <div
+        className={`h-full flex ${
+          isSideBarOpen ? "hidden" : "block"
+        } items-center justify-center mt-20 md:mt-24 w-full`}
+      >
+        <div className="border-2 rounded-md border-red-300 h-full md:mx-0 mx-6 py-2 md:py-6 w-full md:w-[25vw] flex flex-col bg-slate-100 text-black items-start gap-6 justify-start px-6 ">
           <h1 className="font-bold  text-[25px] mt-2">Log In</h1>
           <div>
             <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col">
@@ -52,14 +56,18 @@ function Login({isSideBarOpen}) {
                 type="email"
                 placeholder="Email"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email:e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
               />
               <input
                 className="bg-transparent outline-none border-2 rounded-3xl my-3 px-4 py-2 w-full md:w-[20vw] border-pink-400"
                 type="password"
                 placeholder="Password"
                 value={formData.password}
-                onChange={(e) => setFormData({...formData, password:e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
               />
               <button
                 type="submit"
@@ -79,7 +87,7 @@ function Login({isSideBarOpen}) {
             </form>
           </div>
         </div>
-      </div> 
+      </div>
     </>
   );
 }
